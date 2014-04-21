@@ -1,0 +1,436 @@
+5222		74.125.129.125 74.125.142.125
+2050		54.193.185.143 54.193.168.4
+
+iptables -I INPUT -p tcp -s 54.193.168.4 -j DROP
+iptables -F
+
+sudo tcpflow -e -i eth0 -c -s "(tcp port 5222 or tcp port 2050)"
+
+sudo tcpflow -i eth0  "(tcp port 2050)"
+
+
+
+#>logs/$1.log 2>&1
+
+Server class w/ encryption
+./_-KZ/_-0wA.as:18:   use namespace encrypt;
+
+Game message Constants
+./_-Ht/_-Ik.as:623:
+./com/company/assembleegameclient/parameters/Parameters.as:30:
+
+
+
+      public static const RANDOM1:String = "311f80691451c71b09a13a2a6e";
+      
+      public static const RANDOM2:String = "72c5583cafb6818995cbd74b80";
+      
+
+
+
+
+
+
+./_-KZ/_-0wA.as:14:   import _-0zy.encrypt;
+./com/hurlant/crypto/symmetric/ICipher.as:4:   import _-0zy.encrypt;
+./com/hurlant/crypto/symmetric/SimpleIVMode.as:5:   import _-0zy.encrypt;
+./com/hurlant/crypto/symmetric/SimpleIVMode.as:38:         this.cipher._-0zy.encrypt(param1);
+
+
+
+./_-KZ/_-0wA.as:16:   import _-0zy.decrypt;
+./com/hurlant/crypto/symmetric/ICipher.as:6:   import _-0zy.decrypt;
+./com/hurlant/crypto/symmetric/SimpleIVMode.as:6:   import _-0zy.decrypt;
+./com/hurlant/crypto/symmetric/SimpleIVMode.as:52:         this.cipher._-0zy.decrypt(_loc2_);
+
+   import com.hurlant.util.der.PEM;
+   import com.hurlant.crypto.rsa.RSAKey;
+   import flash.utils.ByteArray;
+   import com.hurlant.util.Base64;
+
+./_-Ht/_-02Z.as:1588:         _loc1_ = Crypto.getCipher("rc4",_-1k6._-0j7(Parameters.RANDOM1));
+
+public static function getCipher(name:String, key:ByteArray, pad:IPad=null):ICipher {
+
+getCipher("rc4", "311f80691451c71b09a13a2a6e")
+this is the OutgoingCipher
+===> let's try decrypting some shit in the tcpflow with it!
+
+
+./com/company/util/_-1k6.as:5:   public class _-1k6 extends Object
+./com/company/util/_-1k6.as:8:      public function _-1k6() {
+
+
+sendMessage method
+
+login logic
+./_-KZ/_-0wA.as:4:   import flash.net.Socket;
+
+
+
+
+            _-VZ.setOutgoingCipher(_loc1_);
+
+         _-VZ.setIncomingCipher(_loc2_);
+
+this is definitely the wire protocol class:
+./_-KZ/_-0wA.as:95:      public function setOutgoingCipher(param1:ICipher) : _-0wA {
+
+
+http://crypto.hurlant.com/demo/
+
+"Secret Key" > "RC4" > 
+
+
+
+its a symmetric cipher
+using com.hurlant.crypto library
+the "rc4" encryption
+using an RSA key
+
+RC4 (also known as ARC4 or ARCFOUR meaning Alleged RC4
+
+While remarkable for its simplicity and speed in software, RC4 has weaknesses that argue against its use in new systems.[2] It is especially vulnerable when the beginning of the output keystream is not discarded, or when nonrandom or related keys are used; some ways of using RC4 can lead to very insecure cryptosystems such as WEP.
+
+
+
+
+
+
+
+the delimiter is probably three null characters
+
+
+
+
+od -t x1 010.069.000.015.37526-054.193.168.004.02050  > out.hex
+od -t x1 054.193.168.004.02050-010.069.000.015.37526 > in.hex
+
+
+
+
+
+
+coffee /media/shared/tmp/rotmg/parser.coffee
+
+tail -f 010.069.000.015.*-054.193.168.004.02050 | coffee /media/shared/tmp/rotmg/parser.coffee
+
+
+
+0 FAILURE 208 : 00d011fce81340c2b6ca
+
+
+
+
+tail -f 010.* | coffee /media/shared/tmp/rotmg/parser.coffee > half-decrypted-010.txt &
+tail -f half-decrypted-010.txt 
+
+tail -f 054.* | coffee /media/shared/tmp/rotmg/parser.coffee > half-decrypted-054.txt &
+tail -f half-decrypted-054.txt 
+
+
+http://crypto.hurlant.com/docs/
+
+
+
+
+
+building a man-in-the-middle tcp proxy
+
+
+iptables -t nat -A OUTPUT -d 96.16.0.1 \
+        -p tcp -o lo --dport 4000 -j DNAT --to 127.0.0.1
+
+nc -v 96.16.0.1 4000
+
+nc -vl 127.0.0.1 4000
+
+
+sudo tcpflow -i eth0  "(tcp port 2050)"
+
+
+
+
+# 54.193.168.4:2050
+
+sudo iptables -t nat -A OUTPUT -d 54.193.168.4 \
+        -p tcp -o lo --dport 2050 -j DNAT --to 127.0.0.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if(Parameters.const_880)
+         {
+            _loc1_ = Crypto.getCipher("rc4",class_1297.method_633(Parameters.RANDOM1));
+            _loc2_ = Crypto.getCipher("rc4",class_1297.method_633(Parameters.RANDOM2));
+            var_17.setOutgoingCipher(_loc1_);
+            var_17.setIncomingCipher(_loc2_);
+         }
+      }
+
+
+
+
+
+
+
+      public static const RANDOM1:String = "311f80691451c71b09a13a2a6e";
+      
+      public static const RANDOM2:String = "72c5583cafb6818995cbd74b80";
+      
+      public static const const_1614:String = "-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO" + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo" + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7" + "F3yWYqUbZd/HCBtawwIDAQAB\n" + "-----END PUBLIC KEY-----";
+      
+
+      public static function method_633(param1:String) : ByteArray {
+         var _loc4_:* = false;
+         var _loc5_:* = true;
+         var _loc2_:ByteArray = new ByteArray();
+         var _loc3_:* = 0;
+         while(_loc3_ < param1.length)
+         {
+            _loc2_.writeByte(parseInt(param1.substr(_loc3_,2),16));
+            _loc3_ = _loc3_ + 2;
+         }
+         return _loc2_;
+
+      private function method_576(param1:String) : String {
+         var _loc5_:* = true;
+         var _loc6_:* = false;
+         var _loc2_:RSAKey = PEM.readRSAPublicKey(Parameters.const_1614);
+         var _loc3_:ByteArray = new ByteArray();
+         _loc3_.writeUTFBytes(param1);
+         var _loc4_:ByteArray = new ByteArray();
+         _loc2_.encrypt(_loc3_,_loc4_,_loc3_.length);
+         return Base64.encodeByteArray(_loc4_);
+      }
+
+
+
+     private function method_628() : void {
+         var _loc3_:* = true;
+         var _loc4_:* = false;
+         var _loc1_:Account = class_33.method_7().getInstance(Account);
+         this.var_88.dispatch(class_829.make(Parameters.const_130,class_609.const_1386));
+         this.method_2429();
+         var _loc2_:class_1283 = this.var_27.method_14(HELLO) as class_1283;
+         _loc2_.buildVersion_ = Parameters.const_131 + "." + Parameters.const_157;
+         _loc2_.gameId_ = gameId_;
+         _loc2_.guid_ = this.method_576(_loc1_.getUserId());
+         _loc2_.password_ = this.method_576(_loc1_.method_234());
+         _loc2_.secret_ = this.method_576(_loc1_.method_150());
+         _loc2_.keyTime_ = keyTime_;
+         _loc2_.key_.length = 0;
+         _loc2_.var_187 = var_187 == null?"":var_187;
+         _loc2_.var_1970 = _loc1_.method_258();
+         _loc2_.var_1818 = _loc1_.method_149();
+         _loc2_.var_1826 = _loc1_.method_286();
+         _loc2_.name_66 = _loc1_._-UC.name_66();
+         _loc2_.var_1690 = _loc1_.method_448();
+         var_17.sendMessage(_loc2_);
+      }
+      
+
+the guid, password, and secret are encrypted using the RSA key
+
+
+            _loc1_ = ExternalInterface.call("rotmg.UrlLib.getParam","entrypt");
+
+      public static const const_21:String = "kabam.com";
+      
+      private static const const_1032:String = "kabam.com";
+         return this.userSession["oauth_token"];
+
+
+            _loc3_ = SharedObject.getLocal("RotMG","/");
+
+
+      
+      public static const const_21:String = "rotmg";
+      
+      private static const const_1637:String = "";
+      
+      private static const const_964:String = "rotmg";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+how encryption works
+
+      private function method_1251() : void {
+         var _loc4_:* = true;
+         var _loc5_:* = false;
+         var _loc1_:class_711 = this.name_13.next;
+         var _loc2_:class_711 = _loc1_;
+         while(_loc2_)
+         {
+            this.data.clear();
+            _loc2_.writeToOutput(this.data);
+            this.data.position = 0;
+            if(this.var_1411 != null)
+            {
+               this.var_1411.encrypt(this.data); # data is encrypted;  # this calls the third-party class directly
+               this.data.position = 0;
+            }
+            this.var_48.writeInt(this.data.bytesAvailable + 5); # first byte is len
+            this.var_48.writeByte(_loc2_.id); # second byte is msg id
+            this.var_48.writeBytes(this.data); # remaining bytes is the encrypted data plus 3 NULs which will be in the overallocated bytebuffer
+            _loc2_.consume();
+            _loc2_ = _loc2_.next;
+         }
+         this.var_48.flush();
+         this.const_239.next = null;
+         this.const_239.var_121 = null;
+         this.name_13 = this.name_9 = this.const_239;
+      }
+      
+
+
+
+
+how decryption works
+
+
+    
+      private function method_1167(param1:ProgressEvent=null) : void {
+         var _loc4_:* = true;
+         var _loc5_:* = false;
+         var messageId:uint = 0;
+         var message:class_711 = null;
+         var data:ByteArray = null;
+         var errorMessage:String = null;
+         var _:ProgressEvent = param1;
+         while(!(this.var_48 == null || !this.var_48.connected))
+         {
+            if(this.var_353 == -1)
+            {
+               if(this.var_48.bytesAvailable < 4)
+               {
+                  break;
+               }
+               try
+               {
+                  this.var_353 = this.var_48.readInt();
+               }
+               catch(e:Error)
+               {
+                  if(_loc5_)
+                  {
+                  }
+                  errorMessage = method_235("Socket-Server Data Error: {0}: {1}",[e.name,e.message]);
+                  if(!_loc5_)
+                  {
+                     error.dispatch(errorMessage);
+                     if(_loc4_)
+                     {
+                     }
+                     if(_loc4_)
+                     {
+                     }
+                     break;
+                  }
+                  var_353 = -1;
+                  if(_loc4_)
+                  {
+                  }
+                  break;
+               }
+            }
+            if(this.var_48.bytesAvailable < this.var_353 - const_1510)
+                 //  mike's note: public static const const_1510:int = 4;  # this is parsing based on the first byte as length minus 4 bytes which is the formula i noticed
+            {
+               break;
+            }
+            messageId = this.var_48.readUnsignedByte(); # the next byte is the message id!!
+            message = this.var_27.method_14(messageId);
+            data = new ByteArray();
+            if(this.var_353 - 5 > 0) # no message can be less than 5 bytes (len, id, 3 NUL delimiter?)
+            {
+               this.var_48.readBytes(data,0,this.var_353 - 5);  # it seems like the data portion is everything inbetween first two bytes and last 3 NULs
+            }
+            data.position = 0;
+            if(this.var_1618 != null) # if setIncomingCipher() is set; if its not set, then its possible the server data is not even encrypted? maybe in dev/debug mode.
+            {
+               this.var_1618.decrypt(data); # this calls the third-party class directly
+               data.position = 0;
+            }
+            this.var_353 = -1;
+            if(message == null)
+            {
+               this.method_592("Socket-Server Protocol Error: Unknown message");
+               break;
+            }
+            try
+            {
+               message.parseFromInput(data);
+            }
+            catch(error:Error)
+            {
+               method_592("Socket-Server Protocol Error: {0}",[error.toString()]);
+               if(_loc5_)
+               {
+               }
+               break;
+            }
+            message.consume();
+         }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         if(Parameters.const_880)
+         {
+            _loc1_ = Crypto.getCipher("rc4",class_1297.method_633(Parameters.RANDOM1));
+            _loc2_ = Crypto.getCipher("rc4",class_1297.method_633(Parameters.RANDOM2));
+            var_17.setOutgoingCipher(_loc1_);
+            var_17.setIncomingCipher(_loc2_);
+         }
+
+
+
+# ok this is new with the decryption setting enabled
+
+# DEFINITELY THE INCOMING AND OUTGOING DATA ARE USING DIFFERENT KEYS
+# AND RANDOM2 IS USED, AFTER ALL
+# RANDOM2 IS DEFINITELY THE INCOMING CIPHER KEY
+
+
+
+ok its cracked
+
+JPEXS ftw

@@ -1,0 +1,318 @@
+package com.company.assembleegameclient.parameters
+{
+   import flash.display.DisplayObject;
+   import flash.net.SharedObject;
+   import flash.utils.Dictionary;
+   import com.company.util.class_448;
+   import com.company.assembleegameclient.map.Map;
+   import flash.events.Event;
+   import com.company.util.class_447;
+   import flash.system.Capabilities;
+   
+   public class Parameters extends Object
+   {
+      
+      {
+         var _loc1_:* = true;
+         var _loc2_:* = false;
+      }
+      
+      public function Parameters() {
+         var _loc1_:* = true;
+         var _loc2_:* = false;
+         super();
+      }
+      
+      public static const const_131:String = "21.0";
+      
+      public static const const_157:String = "1";
+      
+      public static const const_880:Boolean = true;
+      
+      public static const const_266:int = 2050;
+      
+      public static const const_1451:Boolean = false;
+      
+      public static const const_584:uint = 10944349;
+      
+      public static const const_744:uint = 16572160;
+      
+      public static var root:DisplayObject;
+      
+      public static const const_866:Number = 0.003;
+      
+      public static const const_158:int = 20;
+      
+      public static const const_114:String = "";
+      
+      public static const const_130:String = "*Client*";
+      
+      public static const const_20:String = "*Error*";
+      
+      public static const const_243:String = "*Help*";
+      
+      public static const const_823:String = "*Guild*";
+      
+      public static const const_219:Number = 1.1;
+      
+      public static const const_732:int = 1000;
+      
+      public static const const_582:int = 1000;
+      
+      public static var data_:Object = null;
+      
+      public static var var_773:Boolean = false;
+      
+      public static var var_502:int = 1;
+      
+      public static var var_505:int = 0;
+      
+      public static var var_763:Boolean = true;
+      
+      public static var var_358:Boolean = false;
+      
+      public static var var_974:Boolean = false;
+      
+      public static var var_663:Boolean = true;
+      
+      public static const const_1179:int = -1;
+      
+      public static const const_652:int = -2;
+      
+      public static const const_1582:int = -3;
+      
+      public static const const_1336:int = -6;
+      
+      public static const const_259:Number = 18;
+      
+      public static const const_265:String = "https://www.kabam.com/corporate/terms-of-service";
+      
+      public static const const_553:String = "https://www.kabam.com/corporate/privacy-policy";
+      
+      public static const RANDOM1:String = "311f80691451c71b09a13a2a6e";
+      
+      public static const RANDOM2:String = "72c5583cafb6818995cbd74b80";
+      
+      public static const const_1614:String = "-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO" + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo" + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7" + "F3yWYqUbZd/HCBtawwIDAQAB\n" + "-----END PUBLIC KEY-----";
+      
+      private static var var_571:SharedObject = null;
+      
+      public static function load() : void {
+         var _loc3_:* = false;
+         var _loc4_:* = true;
+         try
+         {
+            var_571 = SharedObject.getLocal("AssembleeGameClientOptions","/");
+            data_ = var_571.data;
+         }
+         catch(error:Error)
+         {
+            if(!_loc3_)
+            {
+               data_ = new Object();
+            }
+         }
+         method_457();
+         save();
+      }
+      
+      public static function save() : void {
+         var _loc2_:* = false;
+         var _loc3_:* = true;
+         try
+         {
+            if(var_571 != null)
+            {
+               var_571.flush();
+            }
+         }
+         catch(error:Error)
+         {
+         }
+      }
+      
+      private static var var_1057:Dictionary = new Dictionary();
+      
+      private static function method_10(param1:String, param2:uint) : void {
+         var _loc3_:* = false;
+         var _loc4_:* = true;
+         if(!data_.hasOwnProperty(param1))
+         {
+            data_[param1] = param2;
+         }
+         var_1057[param1] = true;
+      }
+      
+      public static function setKey(param1:String, param2:uint) : void {
+         var _loc6_:* = true;
+         var _loc7_:* = false;
+         var _loc3_:String = null;
+         for(_loc3_ in var_1057)
+         {
+            if(data_[_loc3_] == param2)
+            {
+               data_[_loc3_] = class_448.const_181;
+            }
+         }
+         data_[param1] = param2;
+      }
+      
+      private static function method_8(param1:String, param2:*) : void {
+         var _loc3_:* = false;
+         var _loc4_:* = true;
+         if(!data_.hasOwnProperty(param1))
+         {
+            data_[param1] = param2;
+         }
+      }
+      
+      public static function method_27() : Boolean {
+         var _loc1_:* = true;
+         var _loc2_:* = false;
+         return !var_773 && (data_.GPURender) && !Map.var_931;
+      }
+      
+      public static function method_1591(param1:Event) : void {
+         var _loc2_:* = false;
+         var _loc3_:* = true;
+         method_524();
+      }
+      
+      public static function method_524() : void {
+         var _loc1_:* = true;
+         var _loc2_:* = false;
+         var_773 = true;
+      }
+      
+      public static function method_457() : void {
+         var _loc2_:* = false;
+         var _loc3_:* = true;
+         method_10("moveLeft",class_448.A);
+         method_10("moveRight",class_448.D);
+         method_10("moveUp",class_448.W);
+         method_10("moveDown",class_448.S);
+         method_10("rotateLeft",class_448.Q);
+         method_10("rotateRight",class_448.E);
+         method_10("useSpecial",class_448.SPACE);
+         method_10("interact",class_448.NUMBER_0);
+         method_10("useInvSlot1",class_448.NUMBER_1);
+         method_10("useInvSlot2",class_448.NUMBER_2);
+         method_10("useInvSlot3",class_448.NUMBER_3);
+         method_10("useInvSlot4",class_448.NUMBER_4);
+         method_10("useInvSlot5",class_448.NUMBER_5);
+         method_10("useInvSlot6",class_448.NUMBER_6);
+         method_10("useInvSlot7",class_448.NUMBER_7);
+         method_10("useInvSlot8",class_448.NUMBER_8);
+         method_10("escapeToNexus2",class_448.F5);
+         method_10("escapeToNexus",class_448.R);
+         method_10("autofireToggle",class_448.I);
+         method_10("scrollChatUp",class_448.const_1481);
+         method_10("scrollChatDown",class_448.const_1100);
+         method_10("miniMapZoomOut",class_448.const_583);
+         method_10("miniMapZoomIn",class_448.const_160);
+         method_10("resetToDefaultCameraAngle",class_448.Z);
+         method_10("togglePerformanceStats",class_448.const_181);
+         method_10("options",class_448.O);
+         method_10("toggleCentering",class_448.const_181);
+         method_10("chat",class_448.ENTER);
+         method_10("chatCommand",class_448.const_1340);
+         method_10("tell",class_448.TAB);
+         method_10("guildChat",class_448.G);
+         method_10("testOne",class_448.J);
+         method_10("testTwo",class_448.K);
+         method_10("toggleFullscreen",class_448.const_181);
+         method_10("useHealthPotion",class_448.F);
+         method_10("GPURenderToggle",class_448.const_181);
+         method_10("useMagicPotion",class_448.V);
+         method_10("switchTabs",class_448.B);
+         method_8("playerObjectType",782);
+         method_8("playMusic",true);
+         method_8("playSFX",true);
+         method_8("playPewPew",true);
+         method_8("centerOnPlayer",true);
+         method_8("preferredServer",null);
+         method_8("needsTutorial",true);
+         method_8("needsRandomRealm",true);
+         method_8("cameraAngle",7 * Math.PI / 4);
+         method_8("defaultCameraAngle",7 * Math.PI / 4);
+         method_8("showQuestPortraits",true);
+         method_8("fullscreenMode",false);
+         method_8("showProtips",true);
+         method_8("protipIndex",0);
+         method_8("joinDate",class_447.method_630());
+         method_8("lastDailyAnalytics",null);
+         method_8("allowRotation",false);
+         method_8("charIdUseMap",{});
+         method_8("drawShadows",true);
+         method_8("textBubbles",true);
+         method_8("showTradePopup",true);
+         method_8("paymentMethod",null);
+         method_8("filterLanguage",true);
+         method_8("showGuildInvitePopup",true);
+         method_8("showBeginnersOffer",false);
+         method_8("beginnersOfferTimeLeft",0);
+         method_8("beginnersOfferShowNow",false);
+         method_8("beginnersOfferShowNowTime",0);
+         method_8("watchForTutorialExit",false);
+         method_8("clickForGold",false);
+         method_8("contextualPotionBuy",true);
+         method_8("inventorySwap",true);
+         if(Capabilities.playerType == "Desktop")
+         {
+            method_8("GPURender",false);
+         }
+         else
+         {
+            method_8("GPURender",false);
+         }
+         method_8("forceChatQuality",false);
+         method_8("hidePlayerChat",false);
+         method_8("chatStarRequirement",1);
+         method_8("chatStarRequirement",1);
+         method_8("hasNewsUpdate1",false);
+         method_8("hasNewsUpdate2",false);
+         method_8("hasNewsUpdate3",false);
+         method_8("hasNewsUpdate4",false);
+         method_8("newsTimestamp1",const_219);
+         method_8("newsTimestamp2",const_219);
+         method_8("newsTimestamp3",const_219);
+         method_8("newsTimestamp4",const_219);
+         if(!data_.hasOwnProperty("needsSurvey"))
+         {
+            data_.needsSurvey = data_.needsTutorial;
+            if(0 !== _loc1_)
+            {
+               if(1 !== _loc1_)
+               {
+                  if(2 !== _loc1_)
+                  {
+                     if(3 !== _loc1_)
+                     {
+                        switch(null)
+                        {
+                           case 4:
+                              data_.surveyDate = 0;
+                              data_.playTimeLeftTillSurvey = 5 * 60;
+                              data_.surveyGroup = "5MinPlaytime";
+                              break;
+                        }
+                     }
+                     if(3 === _loc1_)
+                     {
+                     }
+                  }
+                  if(2 === _loc1_)
+                  {
+                  }
+               }
+               if(1 === _loc1_)
+               {
+               }
+            }
+            if(0 === _loc1_)
+            {
+            }
+         }
+      }
+   }
+}
