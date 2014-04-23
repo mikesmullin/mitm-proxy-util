@@ -5,9 +5,20 @@ Protocol = require './protocol'
 cmds = require './const-cmds'
 d = (i) -> ("000"+i).substr(-3)
 h = (s, i) -> parseInt s.substr(i, 2), 16
+decoderRing = (s) ->
+  out = ''
+  for i in [0...s.length] by 2
+    hex = s.substr i, 2
+    dec = parseInt hex, 16
+    out += " " if out isnt ''
+    if dec >= 32 and dec <= 126
+      out += String.fromCharCode dec
+    else
+      out += d dec
+  return out
 
 # e.g., coffee main.coffee 127.0.0.1 2051 1.0.0.1 2050 # nexus
-# e.g., coffee main.coffee 127.0.0.1 2052 1.0.0.2 2050 # game world: Medusa?
+# e.g., coffee main.coffee 127.0.0.1 2053 1.0.0.2 2050 # game world: Medusa?
 # e.g., coffee main.coffee 127.0.0.1 2050 127.0.0.1 2051 # localhost debugging
 [nil, nil, listen_ip, listen_port, remote_ip, remote_port] = process.argv
 proxy = new Proxy listen_ip, listen_port, remote_ip, remote_port, 'hex'
@@ -18,7 +29,7 @@ proxy.start
     client_protocol.parse req.data, (msgId, msg) ->
       msgName = cmds[msgId] or "UNDEFINED"
       # TODO: use decoder ring view here
-      log "#{Color.bright_blue}interpreted send: #{Color.bright_white}#{msgName}#{Color.bright_blue} #{d msgId} msg: #{msg}#{Color.reset}"
+      log "#{Color.bright_blue}interpreted send: #{Color.bright_white}#{msgName}#{Color.bright_blue} #{d msgId} msg: #{decoderRing msg}#{Color.reset}"
       return
     in_res.send req.data, -> # proxy client -> server
     return
@@ -26,7 +37,7 @@ proxy.start
   intercept_in: (req, in_res, out_res) ->
     server_protocol.parse req.data, (msgId, msg) ->
       msgName = cmds[msgId] or "UNDEFINED"
-      log "#{Color.bright_red}interpreted recv: #{Color.bright_white}#{msgName}#{Color.bright_red} #{d msgId} msg: #{msg}#{Color.reset}"
+      log "#{Color.bright_red}interpreted recv: #{Color.bright_white}#{msgName}#{Color.bright_red} #{d msgId} msg: #{decoderRing msg}#{Color.reset}"
       return
     out_res.send req.data, -> # proxy server -> client
     return

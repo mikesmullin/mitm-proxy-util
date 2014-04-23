@@ -57,7 +57,7 @@ class Server
     return
 
   send: (socket, data, cb) =>
-    #log "#{Color.yellow}#{socket.id} send: #{data}#{Color.reset}"
+    log "#{Color.yellow}#{socket.id} send: #{data}#{Color.reset}"
     socket.write data, @ENCODING, cb
 
   close: ->

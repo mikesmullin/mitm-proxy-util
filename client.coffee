@@ -50,7 +50,7 @@ class Client
     return
 
   send: (data, cb) =>
-    #log "#{Color.yellow}#{@socket.id} send: #{data}#{Color.reset}"
+    log "#{Color.yellow}#{@socket.id} send: #{data}#{Color.reset}"
     @socket.write data, @encoding, cb
     return
 
