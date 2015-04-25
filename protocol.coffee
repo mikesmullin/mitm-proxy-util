@@ -8,7 +8,7 @@ class Protocol
     @cipher = new RC4 new Buffer cipherKey, "hex"
   parse: (data, cb) ->
     @buf += data
-    len = parseInt(@buf.substr(0, 2*4), 16) # first four bytes is a 32-bit integer representing the total length of the message
+    len = parseInt(@buf.substr(0, 2*4), 16) # first two bytes is a 16-bit integer representing the total length of the message
     if @buf.length >= len*2 # if we have the complete message
       msgId = parseInt(@buf.substr(2*4, 2), 16) # next byte represents the command id
       data = @buf.substr(2*5, (len*2)-(2*5)) # remaining bytes contain encrypted data
